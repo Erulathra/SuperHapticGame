@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -7,8 +9,9 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] int maxEnemiesNumber = 5;
     [SerializeField] private float timeToSpawn = 1f;
     private float spawnCountdown;
-    private int enemiesNumber;
+    //private int enemiesNumber;
     private GameObject target;
+    public List<GameObject> allEnemies = new List<GameObject>();
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -26,7 +29,7 @@ public class EnemyManager : MonoBehaviour
         if(spawnCountdown <= 0.0f)
         {
             spawnCountdown = timeToSpawn;
-            if(enemiesNumber < maxEnemiesNumber)
+            if(allEnemies.Count < maxEnemiesNumber)
             {
                 SpawnEnemy();
             }
@@ -52,11 +55,20 @@ public class EnemyManager : MonoBehaviour
         spawnPosition += target.transform.position;
         spawnPosition.y = target.transform.position.y;
 
-        Instantiate (enemyPrefab, spawnPosition, transform.rotation);
+        GameObject enemy = Instantiate(enemyPrefab, spawnPosition, transform.rotation);
 
         Debug.Log(spawnPosition);
 
-        enemiesNumber += 1;
+        //enemiesNumber += 1;
+        allEnemies.Add(enemy);
+        //Debug.Log(allEnemies);
         
+    }
+
+    public void RemoveFromEnemyList(GameObject enemy)
+    {
+        allEnemies.Remove(enemy);
+        Destroy(enemy);
+        Debug.Log(allEnemies.Count);
     }
 }
