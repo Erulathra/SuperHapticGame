@@ -8,22 +8,6 @@ public class GyroController : MonoBehaviour
 
     private Vector3 currentRotation;
     
-    void Start()
-    {
-        JSL.JslConnectDevices();
-
-        StartCoroutine(Calibrate());
-    }
-
-    IEnumerator Calibrate()
-    {
-        JSL.JslStartContinuousCalibration(0);
-        yield return new WaitForSeconds(1f);
-        JSL.JslPauseContinuousCalibration(0);
-        
-        Debug.Log($"Calibration End");
-    }
-
     void Update()
     {
         JSL.IMU_STATE imuState = JSL.JslGetIMUState(0);
