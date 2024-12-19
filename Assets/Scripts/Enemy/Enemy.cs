@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     public float speed = 1.0f;
     private GameObject enemyManager;
     public float step;
+    public GameObject ragdollPrefab;
 
     // The target (cylinder) position.
     private GameObject target;
@@ -38,5 +39,6 @@ public class Enemy : MonoBehaviour
     public void Die()
     {
         enemyManager.GetComponent<EnemyManager>().RemoveFromEnemyList(this.gameObject);
+        Instantiate(ragdollPrefab);
     }
 }

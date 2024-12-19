@@ -123,6 +123,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  step: 0
+  ragdollPrefab: {fileID: 8162763190209757700, guid: ea559b92d1f35404d8949f4d8b9f3dee, type: 3}
 --- !u!82 &580782777441312845
 AudioSource:
   m_ObjectHideFlags: 0
