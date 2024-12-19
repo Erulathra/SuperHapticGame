@@ -5,6 +5,8 @@ public class GyroController : MonoBehaviour
 {
     [field: SerializeField]
     public Vector3 Sensivity { get; private set; } = new Vector3(0.005f, 0.005f, 0.005f);
+
+    private Vector3 currentRotation;
     
     void Start()
     {
@@ -29,13 +31,10 @@ public class GyroController : MonoBehaviour
         
         if ((simpleState.buttons & (1 << JSL.ButtonMaskPlus)) != 0)
         {
-            transform.rotation = Quaternion.identity;
+            currentRotation = Vector3.zero;
         }
         
-        // Vector3 gyroEuler = new Vector3(0f, State.gyroZ, 0f);
-        Vector3 gyroEuler = new Vector3(imuState.gyroY * Sensivity.x, imuState.gyroZ * Sensivity.y, 0f);
-        Vector3 newRotation = transform.rotation.eulerAngles + gyroEuler;
-
-        transform.rotation = Quaternion.Euler(newRotation);
+        currentRotation += new Vector3(imuState.gyroY * Sensivity.x, imuState.gyroZ * Sensivity.y, 0f);
+        transform.rotation = Quaternion.Euler(currentRotation);
     }
 }
