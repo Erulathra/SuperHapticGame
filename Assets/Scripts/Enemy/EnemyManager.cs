@@ -49,7 +49,7 @@ public class EnemyManager : MonoBehaviour
         direction.z = Random.Range(-1.0f, 1.0f);
         direction = direction.normalized;
 
-        float magnitude = Random.Range(7, 15);
+        float magnitude = Random.Range(15, 30);
 
         Vector3 spawnPosition = direction * magnitude;
         spawnPosition += target.transform.position;

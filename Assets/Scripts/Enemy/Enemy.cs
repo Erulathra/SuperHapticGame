@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
     // Adjust the speed for the application.
     public float speed = 1.0f;
     private GameObject enemyManager;
+    public float step;
 
     // The target (cylinder) position.
     private GameObject target;
@@ -19,15 +20,14 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var step =  speed * Time.deltaTime;
+        step = speed * Time.deltaTime;
+        //speed += 1 * Time.deltaTime; //faster
         transform.position = Vector3.MoveTowards(transform.position, target.transform.position, step);
-
     }
 
     void OnTriggerEnter(Collider other)
     {
         //later change into bullet
-        Debug.Log("collision");
         if (other.gameObject.tag == "Player")
         {
             Debug.Log("Collided with player");
