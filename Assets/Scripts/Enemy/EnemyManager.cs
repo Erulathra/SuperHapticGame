@@ -8,6 +8,8 @@ public class EnemyManager : MonoBehaviour
     //[SerializeField] float spawnRadius = 5f;
     [SerializeField] int maxEnemiesNumber = 5;
     [SerializeField] private float timeToSpawn = 1f;
+    [SerializeField] int minRange = 15;
+    [SerializeField] int maxRange = 30;
     private float spawnCountdown;
     //private int enemiesNumber;
     private GameObject target;
@@ -49,7 +51,7 @@ public class EnemyManager : MonoBehaviour
         direction.z = Random.Range(-1.0f, 1.0f);
         direction = direction.normalized;
 
-        float magnitude = Random.Range(15, 30);
+        float magnitude = Random.Range(minRange, maxRange);
 
         Vector3 spawnPosition = direction * magnitude;
         spawnPosition += target.transform.position;
