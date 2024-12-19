@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -16,29 +17,22 @@ public class RumbleController : MonoBehaviour
 
     private void Update()
     {
-        // if (!enabled)
-        //     return;
-        //
-        // float maxDot = -1f;
-        // foreach (Transform enemy in enemies)
-        // {
-        //     Vector3 playerToEnemy = (enemy.position - player.position).normalized;
-        //     float enemyAngle = Vector3.Dot(playerToEnemy, player.forward);
-        //     if (maxDot < enemyAngle)
-        //     {
-        //         maxDot = enemyAngle;
-        //         nearestEnemy = enemy;
-        //     }
-        // }
-        //
-        // float rumble = Mathf.Clamp(maxDot, 0f, 1f);
-        // Debug.Log(rumble);
+        if (!enabled)
+            return;
         
-        // JSL.JslSetRumble(0, rumble, rumble);
-        // Gamepad.current.SetMotorSpeeds(rumble, rumble);
-        foreach (Gamepad gamepad in Gamepad.all)
+        float maxDot = -1f;
+        foreach (Transform enemy in enemies)
         {
-            gamepad.SetMotorSpeeds(100f, 100f);
+            Vector3 playerToEnemy = (enemy.position - player.position).normalized;
+            float enemyAngle = Vector3.Dot(playerToEnemy, player.forward);
+            if (maxDot < enemyAngle)
+            {
+                maxDot = enemyAngle;
+                nearestEnemy = enemy;
+            }
         }
+        
+        float rumble = Mathf.Clamp(maxDot, 0f, 1f);
+        JSL.JslSetHDRumble(0, rumble, rumble, rumble, rumble);
     }
 }

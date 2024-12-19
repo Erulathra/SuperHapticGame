@@ -20,8 +20,14 @@ public class Player : MonoBehaviour
         StartCoroutine(Calibrate());
     }
 
+    private void OnDestroy()
+    {
+        JSL.JslDisconnectAndDisposeAll();
+    }
+
     IEnumerator Calibrate()
     {
+        JSL.JslResetContinuousCalibration(0);
         JSL.JslStartContinuousCalibration(0);
         yield return new WaitForSeconds(1f);
         JSL.JslPauseContinuousCalibration(0);

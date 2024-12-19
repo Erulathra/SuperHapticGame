@@ -20,5 +20,7 @@ public class GyroController : MonoBehaviour
         
         currentRotation += new Vector3(imuState.gyroY * Sensivity.x, imuState.gyroZ * Sensivity.y, 0f);
         transform.rotation = Quaternion.Euler(currentRotation);
+        
+        print(currentRotation);
     }
 }
