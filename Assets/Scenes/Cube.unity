@@ -378,6 +378,54 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gyroController: {fileID: 495239039}
   rumbleController: {fileID: 495239038}
+--- !u!1 &1331388930
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1331388932}
+  - component: {fileID: 1331388931}
+  m_Layer: 0
+  m_Name: EnemyManager
+  m_TagString: EnemyManager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1331388931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331388930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f56db07147aec8f46aab7c331a3f56d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 8243775080422719986, guid: 27075d88d9fdd7b4185584873deb6120, type: 3}
+  maxEnemiesNumber: 2
+  timeToSpawn: 5
+  allEnemies: []
+--- !u!4 &1331388932
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331388930}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2065544942301275658
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -430,6 +478,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: P_MightyPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 3638722038524884831, guid: d91c082193e53f944a5f4c03798eea9b, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6228838745290890522, guid: d91c082193e53f944a5f4c03798eea9b, type: 3}
+      propertyPath: maxAngle
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8519196143854448221, guid: d91c082193e53f944a5f4c03798eea9b, type: 3}
       propertyPath: player
       value: 
@@ -461,3 +517,4 @@ SceneRoots:
   - {fileID: 167576437}
   - {fileID: 454021452}
   - {fileID: 2065544942301275658}
+  - {fileID: 1331388932}

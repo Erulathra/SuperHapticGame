@@ -7,32 +7,34 @@ using UnityEngine.InputSystem;
 public class RumbleController : MonoBehaviour
 {
     [SerializeField]
-    private List<Transform> enemies;
-    
-    [SerializeField]
     private Transform player ;
 
-    [SerializeField]
-    private Transform nearestEnemy;
+    public Transform nearestEnemy { get; private set; }
 
     private void Update()
     {
         if (!enabled)
             return;
+
+        Enemy[] enemiesComponents = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
         
         float maxDot = -1f;
-        foreach (Transform enemy in enemies)
+        foreach (Enemy enemy in enemiesComponents)
         {
-            Vector3 playerToEnemy = (enemy.position - player.position).normalized;
+            if (enemy == null)
+                return;
+            
+            Vector3 playerToEnemy = (enemy.transform.position - player.position).normalized;
             float enemyAngle = Vector3.Dot(playerToEnemy, player.forward);
             if (maxDot < enemyAngle)
             {
                 maxDot = enemyAngle;
-                nearestEnemy = enemy;
+                nearestEnemy = enemy.transform;
             }
         }
         
         float rumble = Mathf.Clamp(maxDot, 0f, 1f);
+        rumble = Mathf.Pow(rumble, 5f);
         JSL.JslSetHDRumble(0, rumble, rumble, rumble, rumble);
     }
 }

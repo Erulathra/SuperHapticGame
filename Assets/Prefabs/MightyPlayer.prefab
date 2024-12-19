@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 7528431725493824496}
   - component: {fileID: 3763957463005313786}
   - component: {fileID: 8519196143854448221}
+  - component: {fileID: 6228838745290890522}
+  - component: {fileID: 1747230658685570112}
   m_Layer: 0
   m_Name: MightyPlayer
   m_TagString: Untagged
@@ -136,9 +138,89 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7eecc48e79d475bb9848491cfa7401f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies: []
-  player: {fileID: 0}
-  nearestEnemy: {fileID: 0}
+  player: {fileID: 44191151216529713}
+--- !u!114 &6228838745290890522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3638722038524884831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc487a9f8b43ec0408f31f954d0d68d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootAction:
+    m_Name: Shoot
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 9bd0c56d-92a7-40bc-a172-65269a721b15
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: e22c4ff0-71ed-4164-a611-f547cbcbedca
+      m_Path: <Gamepad>/rightStick
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Shoot
+      m_Flags: 0
+    m_Flags: 0
+  reloadAction:
+    m_Name: Reload
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 193190a1-6c41-43be-8d16-c87519232c1a
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 1b7d7888-0308-45e1-a265-321c83d04984
+      m_Path: <Gamepad>/dpad/down
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Reload
+      m_Flags: 0
+    m_Flags: 0
+  gunshoot: {fileID: 8300000, guid: f9c192fe868cbb0418ed6166a7dfa075, type: 3}
+  empty: {fileID: 8300000, guid: 9a092f31038fa244fbd4083ddb252994, type: 3}
+  relase: {fileID: 8300000, guid: 161f8c675040db840a42d4416ea3cd2c, type: 3}
+  reloade: {fileID: 8300000, guid: 64673c33c4f5bae4186c16a7a6494f0e, type: 3}
+  miss: {fileID: 8300000, guid: b00ac0cf557398a4ebec9eea24081215, type: 3}
+  rumbleController: {fileID: 8519196143854448221}
+  maxAngle: 15
+  moveSpeed: 5
+  mag: 6
+--- !u!54 &1747230658685570112
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3638722038524884831}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &4657541676615614718
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,6 +15,11 @@ public class Shot : MonoBehaviour
     public AudioClip empty;
     public AudioClip relase;
     public AudioClip reloade;
+    public AudioClip miss;
+
+    public RumbleController rumbleController;
+    public float maxAngle = 15f;
+    
     private AudioSource audioSource;
 
     public float moveSpeed = 5f;
@@ -59,7 +64,7 @@ public class Shot : MonoBehaviour
 
     void Update()
     {   
-        //Strza³ dodac wykonywanie on shootAction input
+        //Strzaï¿½ dodac wykonywanie on shootAction input
         Vector2 shootInput1;
         shootInput1 = shootAction.ReadValue<Vector2>();
         if (!OneShootFlag && shootInput1.x == 0.0)
@@ -73,6 +78,7 @@ public class Shot : MonoBehaviour
             {
                 mag = mag - 1;
                 audioSource.PlayOneShot(gunshoot);
+                ShotWeapon();
             }
             else
             {
@@ -80,7 +86,7 @@ public class Shot : MonoBehaviour
             }
         }
 
-        //Reload to samo co wy¿ej
+        //Reload to samo co wyï¿½ej
         float dpad = reloadAction.ReadValue<float>();
 
         if(relasesound && dpad > 0.5f)
@@ -121,9 +127,29 @@ public class Shot : MonoBehaviour
             check = true;
             mag = 6;
         }
+    }
 
-
-
+    void ShotWeapon()
+    {
+        if (rumbleController)
+        {
+            if (rumbleController.nearestEnemy)
+            {
+                Vector3 playerToEnemy = (rumbleController.nearestEnemy.position - transform.position).normalized;
+                float dot = Vector3.Dot(playerToEnemy, transform.forward);
+                if (dot > Mathf.Deg2Rad * maxAngle)
+                {
+                    Enemy enemy = rumbleController.nearestEnemy.GetComponent<Enemy>();
+                    if (enemy)
+                    {
+                        enemy.Die();
+                        return;
+                    }
+                }
+            }
+        }
+        
+        audioSource.PlayOneShot(miss);
     }
 }
 
